@@ -1,0 +1,91 @@
+@media screen and (max-width: 480px){
+}
+
+body{
+  color: #222;
+}
+
+main {
+  padding: 1vw;
+  max-width: 80vw;
+  margin: 0 auto;
+}
+
+header{
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5vw;
+}
+
+header a{
+  text-decoration: none;
+  color: inherit;
+}
+
+header nav{
+  display: flex;
+  position: relative;
+  gap: 1vw;
+}
+
+header a.logo{
+  font-size: 2vw;
+}
+
+header nav{
+  font-size: 2vw;
+}
+
+div.post{
+  display: flex;
+  max-width: 100%;
+  margin: 0 auto;
+  padding-bottom: 3vw;
+}
+
+div.post img{
+  min-width: 30vw;
+  min-height: 20vw;
+  max-width: 30vw;
+  max-height: 30vw;
+
+}
+
+div.text{
+  position: relative;
+  left: 1.5vw;
+  text-align: left;
+}
+
+div.text h2{
+  position: relative;
+  bottom: 2vw;
+  font-size: 2.5vw;
+}
+
+div.post div.text .info{
+  margin: 0;
+  position: relative;
+  font-size: 0.85vw;
+  font-weight: 500;
+  bottom: 3.5vw;
+  color: #888;
+  display: flex;
+  gap: 0.8vw;
+}
+div.post p.info a.author{
+  color: #64a9e9;
+}
+
+div.text p.content{
+  position: relative;
+  font-size: 1.1vw;
+  font-weight: 500;
+  bottom: 2vw;
+  text-align: justify;
+  max-width: 45vw;
+  line-height: 1.7vw;
+}
+
+/* 1vw laptop == 14px */
