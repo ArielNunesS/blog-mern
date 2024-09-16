@@ -1,18 +1,22 @@
-import "./App.css"
-import Post from "./components/Post";
-import Header from "./components/Header";
+import "./App.css";
+import Layout from "./components/Layout";
+import {Route, Routes} from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import RegisterPage from "./pages/RegisterPage";
+import LoginPage from "./pages/LoginPage";
 
 function App() {
   return (<>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
-  <main>
-  <Header/>
-  
-    <Post/>
-    <Post/>
-    <Post/>
+  <Routes>
+    <Route path="/" element={< Layout />}>
+    
+      <Route index element={< HomePage />}/>
 
-    </main>
+      <Route path="/register" element={< RegisterPage />}/>
+      <Route path="/login" element={< LoginPage />}/>
+
+    </Route>
+  </Routes>
     </>
   );
 }
