@@ -1,12 +1,25 @@
-@media screen and (max-width: 480px){
+@media screen and (max-width: 480px) {
+  form.register, form.login {
+    max-width: 90vw;
+  }  
+
+input{
+  font-size: 5vw;
+  height: 7vw;
+}
+
+.btn-form{
+    font-size: 5vw;
+  }
 }
 
 body{
   color: #222;
-  background-color: #eff2f5;
+  background-color: #f3f7fa;
+  margin: 0;
 }
 
-main {
+main{
   padding: 1vw;
   max-width: 80vw;
   margin: 0 auto;
@@ -89,30 +102,64 @@ div.text p.content{
   line-height: 1.7vw;
 }
 
-form.register, form.login{
-  max-width: 25vw;
+.register, .login{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
 }
 
-input{
+form{
+  position: relative;
+  bottom: 7vh;
+}
+
+.form-title{
+  position: relative;
+  font-size: 5vw;
+}
+
+.form-input{
+  position: relative;
   display: block;
-  margin-bottom: 0.3vw;
-  height: 1.5vw;
-  width: 20vw;
+  margin-bottom: 1vw;
+  height: 5vh;
+  width: 25vw;
   padding: 0.5vw;
   border: 0;
-  background-color: #eff2f5;
+  background-color: #f3f7fa;
   border-bottom: 0.15vw solid #cccbcb;
   font-size: 1vw;
+  font-weight: bold;
 }
 
-button.btn-register, button.btn-login{
+.form-input:focus{
+  outline: 0;
+  background-color: #e6e6ff;
+}
+
+.btn-form{
   position: inherit;
   margin-top: 2vw;
   padding: 1vw;
   width: 21.3vw;
-  background-color: #e2ebf3;
-  font-size: 1vw;
+  background-color: #8f8f8f8a;
+  font-size: 1.3vw;
+  font-weight: 600;
+  color: #fff;
+  border-radius: 1vw;
   border: 0;
+}
+
+.btn-form.active{
+  font-weight: bold;
+  background-color: #8f8f8f;
+}
+
+.btn-form.active:hover{
+  transition: 0.3s;
+  background-color: #333333;
+  box-shadow: 0 0 0 0.1vw #b6b6b6;
 }
 
 /* 1vw laptop == 14px */
