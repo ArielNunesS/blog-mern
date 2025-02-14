@@ -30,12 +30,12 @@ export default function RegisterPage(){
                     type="text" placeholder="Username" className="form-input"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
-                    />
+                />
                 <input
                     type="text" placeholder="Password" className="form-input"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    />
+                />
                 <button
                     className={`btn-form ${isActive ? 'active' : ''}`}>
                     Enter

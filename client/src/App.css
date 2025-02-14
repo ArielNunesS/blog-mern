@@ -135,7 +135,7 @@ form{
 
 .form-input:focus{
   outline: 0;
-  background-color: #e6e6ff;
+  background-color: #d7d7da;
 }
 
 .btn-form{
@@ -153,13 +153,19 @@ form{
 
 .btn-form.active{
   font-weight: bold;
-  background-color: #8f8f8f;
+  background-color: #696969;
+  cursor: pointer;
 }
 
 .btn-form.active:hover{
   transition: 0.3s;
-  background-color: #333333;
+  background-color: #252525;
   box-shadow: 0 0 0 0.1vw #b6b6b6;
+  cursor: pointer;
+}
+
+.btn-logout:hover {
+  cursor: pointer;
 }
 
 /* 1vw laptop == 14px */

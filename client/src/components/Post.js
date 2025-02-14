@@ -1,7 +1,7 @@
 export default function Post(){
     return (<>
         <div className="post">
-            <img src="https://i.scdn.co/image/ab67616d0000b2731df557c6310e8711a310790a"></img>
+            <img src="https://i0.wp.com/ifractal.com.br/wp-content/uploads/2023/05/chat-gpt-o-que-e.jpg?fit=640%2C427&ssl=1"></img>
             <div className="text">
                 <h2>First impressions of OpenAI o1: An AI designed to overthink it</h2>
         <p className="info">
