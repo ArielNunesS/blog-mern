@@ -1,0 +1,56 @@
+h1 {
+    font-size: 3vw;
+}
+
+.title-input {
+}
+
+.post-form {
+    margin-left: 7vw;
+}
+
+label {
+    font-size: 1.3vw;
+}
+
+.post-form input {
+    display: block;
+    width: 50%;
+    height: 1.7vw;
+    border: none;
+    margin-block: 0.;
+    outline: none;
+}
+
+.file-input {
+    font-weight: bolder;
+}
+
+.text-editor {
+    margin-top: 1vw;
+    width: 50%;
+    height: 20vw;
+}
+
+.btn-create-post {
+    position: absolute;
+    width: 10vw;
+    height: 5vw;
+    top: 70%;
+    right: 25%;
+    font-size: 1.3vw;
+    font-weight: bold;
+    border: 0;
+    background-color: #0000008a;
+    color: #ffffff;
+    border-radius: 1vw;
+    padding: 10px 20px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.btn-create-post.active:hover {
+    transition: 0.4s;
+    background-color: #252525;
+    box-shadow: 0 0 0 1px #b6b6b6;
+    cursor: pointer;
+}
