@@ -20,7 +20,7 @@ const   modules = {
     'list', 'bullet', 'indent',
     'link', 'image'
   ];
-
+  
 export default function CreatePost() {
     const [ title, setTitle ] = useState('');
     const [ summary, setSummary ] = useState('');
@@ -65,36 +65,47 @@ export default function CreatePost() {
     return ( <>
         <form className="post-form" onSubmit={CreateNewPost}>
             <h1>Make Your Post</h1>
-            
-        <label>Title</label>
-            <input type="title"
-            className="title-input"
-            value={title}
-            onChange={e => setTitle(e.target.value)} />
-            
-        <label>Summary</label>
-            <input type="summary"
-            className="summary-input"
-            value={summary}
-            onChange={e => setSummary(e.target.value)} />
-
-        <div className="file-btn">
-            <input type="file"
-            className="file-input"
-            onChange={e => setFiles(e.target.files)} />
-
-            <ReactQuill
-            className="text-editor"
-            value={content}
-            modules={modules}
-            formats={formats}
-            onChange={newValue => setContent(newValue)}
+            <label>Title</label>
+                <input type="title"
+                className="title-input"
+                value={title}
+                onChange={e => setTitle(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && e.preventDefault()}
             />
-                <button type="submit"
-                    className={`btn-create-post ${isActive ? 'active' : ''}`}>
-                    Create Post
-                </button>
-        </div>
+
+            <label>Summary</label>
+                <input type="summary"
+                className="summary-input"
+                value={summary}
+                onChange={e => setSummary(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && e.preventDefault()}
+            />
+
+            <div className="file-btn">
+                <input type="file"
+                id="file-upload"
+                className="file-input"
+                onChange={e => setFiles(e.target.files)}
+                onKeyDown={(e) => e.key === "Enter" && e.preventDefault()}
+            />
+
+                <label htmlFor="file-upload" className="custom-file-label">
+                    Upload a Image
+                </label>
+
+            </div>
+
+                <ReactQuill
+                className="text-editor"
+                value={content}
+                modules={modules}
+                formats={formats}
+                onChange={newValue => setContent(newValue)}
+                />
+                    <button type="submit"
+                        className={`btn-create-post ${isActive ? 'active' : ''}`}>
+                        Create Post
+                    </button>
         </form>
         </>
     );

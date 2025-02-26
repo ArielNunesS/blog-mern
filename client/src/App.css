@@ -63,7 +63,6 @@ div.post img{
   min-height: 20vw;
   max-width: 30vw;
   max-height: 30vw;
-
 }
 
 div.text{
@@ -73,10 +72,23 @@ div.text{
 }
 
 div.text h2{
+  display: inline;
   position: relative;
-  bottom: 2vw;
   font-size: 2.5vw;
+  text-decoration: none;
+  color: inherit;
+  margin-bottom: 2vw;
 }
+
+div.text a {
+  display: inline;
+  text-decoration: none;
+  color: inherit;
+  width: inherit;
+  padding: 0;
+  margin: 0;
+}
+
 
 div.post div.text .info{
   margin: 0;
@@ -88,18 +100,25 @@ div.post div.text .info{
   display: flex;
   gap: 0.8vw;
 }
+
+.summary {
+  margin-top: 2vw;
+  font-weight: 500;
+}
+
 div.post p.info a.author{
   color: #64a9e9;
 }
 
 div.text p.content{
   position: relative;
-  font-size: 1.1vw;
+  font-size: 0.7vw;
   font-weight: 500;
-  bottom: 2vw;
+  bottom: 1.5vw;
   text-align: justify;
   max-width: 45vw;
-  line-height: 1.7vw;
+  line-height: 0.7vw;
+  max-height: 10vw;
 }
 
 .register, .login{
@@ -164,8 +183,6 @@ form{
   cursor: pointer;
 }
 
-.btn-logout:hover {
+.btn-logout:hover{
   cursor: pointer;
 }
-
-/* 1vw laptop == 14px */

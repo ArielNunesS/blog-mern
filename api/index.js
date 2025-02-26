@@ -124,4 +124,28 @@ app.get('/posts', async (req, res) => {
     }
 });
 
+app.get('/posts/:id', async (req, res) => {
+    const { id } = req.params;
+    const postDoc = await Post.findById(id).populate('author', ['username']);
+    res.json(postDoc);
+});
+
+app.delete('/posts/:id', async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const postToDelete = await Post.findById(id);
+
+    if(postToDelete) {
+        await Post.findByIdAndDelete(postToDelete);
+        return res.status(200).json({ message: "Ok, deleting post", id });
+    } else {
+        return res.status(404).json({ error: "Post not found" });
+    }
+}   catch (error) {
+        return res.status(500).json({ error: "Internal server error" });
+    }
+
+});
+
 app.listen(4000);
