@@ -24,22 +24,7 @@ Este blog nasceu da vontade de criar uma plataforma completa onde usuários pude
 
 A organização do projeto foi pensada para separar claramente as responsabilidades de cada camada:
 
-blog-mern/
-│
-├── api/                # Código do servidor (back-end)
-│   ├── models/         # Definição dos modelos de dados
-│   ├── routes/         # Configuração das rotas da API
-│   └── server.js       # Inicialização e configuração do servidor
-│
-├── client/             # Código do cliente (front-end)
-│   ├── public/         # Arquivos públicos (imagens, ícones, etc.)
-│   └── src/            # Código-fonte React
-│       ├── components/ # Componentes reutilizáveis da interface
-│       ├── pages/      # Páginas principais da aplicação
-│       └── App.js      # Componente raiz que integra os demais
-│
-└── README.md           # Este arquivo de documentação
-
+![structure](structure.png)
 
 ## Pré-requisitos
 
