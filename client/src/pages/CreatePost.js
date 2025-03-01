@@ -62,6 +62,8 @@ export default function CreatePost() {
         return <Navigate to={'/'} />
     }
 
+    
+
     return ( <>
         <form className="post-form" onSubmit={CreateNewPost}>
             <h1>Make Your Post</h1>

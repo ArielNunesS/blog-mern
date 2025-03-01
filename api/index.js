@@ -94,16 +94,17 @@ app.post('/posts', uploadMiddleware.single('file'), async (req, res) => {
     });
 });
 
-app.delete('/users', async (req, res) => {
-    const { id } = req.body;
+app.delete('/users/:id', async (req, res) => {
+    const { id } = req.params;
 
     try {
         const objectId = new mongoose.Types.ObjectId(id);
         const userToDelete = await User.findById(objectId);
 
     if(userToDelete){
+        const username = userToDelete.username;
         await User.findByIdAndDelete(objectId);
-        return res.json({ message: 'Ok, deleting user', id });
+        return res.json({ message: 'Ok, deleting user', username });
     } else {
         return res.status(404).json({ error: 'User not found' });
     }

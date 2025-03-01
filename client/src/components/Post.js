@@ -1,7 +1,7 @@
 import React from 'react';
 import parse from 'html-react-parser';
-import { format } from "date-fns";
 import { Link } from 'react-router-dom';
+import { format } from "date-fns";
 
 export default function Post({_id, title, summary, content, cover, createdAt, author}){
 
@@ -17,7 +17,9 @@ export default function Post({_id, title, summary, content, cover, createdAt, au
             <p className="summary"> {summary} </p>
     
             <p className="info">
-                <a className="author">{author.username}</a>
+                <Link to={`users/${author._id}`}>
+                    <a className="author">{author.username}</a>
+                </Link>
                 <time> {format(new Date(createdAt), "MMM d, yyyy - HH:mm")} </time>
             </p>
     
