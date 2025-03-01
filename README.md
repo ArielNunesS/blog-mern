@@ -45,7 +45,7 @@ Para executar o projeto localmente, certifique-se de ter instalado em sua máqui
     ```bash npm install```
 3. **Inicie o servidor:**
 
-    ```bash npm start
+    ```bash npm start```
 
 4. **Instale as dependências do cliente:**
 
