@@ -37,25 +37,23 @@ Para executar o projeto localmente, certifique-se de ter instalado em sua máqui
 
 1. **Clone o repositório:**
 
-    ```bash git clone https://github.com/ArielNunesS/blog-mern.git
+    ```bash git clone https://github.com/ArielNunesS/blog-mern.git```
 
 2. **Instale as dependências do servidor:**
 
-    ```bash cd blog-mern/api
-    npm install
-    ```
+    ```bash cd blog-mern/api```
+    ```bash npm install```
 3. **Inicie o servidor:**
 
     ```bash npm start
 
 4. **Instale as dependências do cliente:**
 
-    ```bash cd blog-mern/client
-    npm install
-    ```
+    ```bash cd blog-mern/client```
+    ```bash npm install```
 
 5. **Inicie o cliente:**
-    ```bash npm start
+    ```bash npm start```
 
 ## Contribuições
 
