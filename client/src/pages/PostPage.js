@@ -34,7 +34,7 @@ export default function PostPage() {
             <time className="single-time"> {format(new Date(postInfo.createdAt), "MMM d, yyyy - HH:mm")} </time>
         </div>
 
-        <img src={`http://localhost:4000/${postInfo.cover}`}/>
+        <img src={`http://localhost:4000/${postInfo.cover}`} alt="Post Img"/>
     </div>
 
     <div className="single-texts">

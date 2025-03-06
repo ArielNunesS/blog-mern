@@ -27,19 +27,40 @@ export default function Header(){
 
     return (<>
         <header>
-        <Link to="/" className="logo">Blog</Link>
+          <Link to="/" className="logo">Meu Blog</Link>
         <nav>
+        <Link to="/">Home</Link>
           {username && ( <>
             <Link to="/create">Create Post</Link>
             <a onClick={logout}>Logout</a>
+
             </>
           )}
             {!username && ( <>
+
                 <Link to="/login">Login</Link>
                 <Link to="/register">Register</Link>
+
               </>
             )}
         </nav>
       </header>
     </>);
 }
+
+// import { Link } from 'react-router-dom';
+
+// export default function Header() {
+//   return (
+//     <header>
+//       <Link to="/" className="logo">MeuBlog</Link>
+//       <nav>
+//         <Link to="/">Home</Link>
+//         <Link to="/categorias">Categorias</Link>
+//         <Link to="/sobre">Sobre</Link>
+//         <Link to="/login" className="btn-login">Entrar</Link>
+//         <Link to="/register" className="btn-register">Cadastrar</Link>
+//       </nav>
+//     </header>
+//   );
+// }

@@ -12,9 +12,19 @@ export default function HomePage(){
         });
     }, [] );
     
-    return (<>
-        {posts.length > 0 && posts.map(post => (
-            <Post {...post} />
-        ))}
-    </>);
+    return (
+
+    <div className="blog-container">
+        <div className="hero-section">
+            <h1>Notícias, insights e mais</h1>
+            <p>Aprenda mais sobre nosso blog, nossa abordagem e as últimas novidades.</p>
+        </div>
+
+      <div className="posts-grid">
+            {posts.length > 0 && posts.map(post => (
+              <Post {...post} />
+            ))}
+      </div>
+    </div>
+    );
 }
