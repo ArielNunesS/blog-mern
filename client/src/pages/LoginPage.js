@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { Navigate } from "react-router-dom";
 import { UserContext } from "../UserContext";
+import "./reg-log.css"
 
 export default function LoginPage(){
     const [username, setUsername] = useState('');

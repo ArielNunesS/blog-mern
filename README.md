@@ -15,10 +15,10 @@ Este blog nasceu da vontade de criar uma plataforma completa onde usuários pude
 
 ## Tecnologias Utilizadas
 
-- **MongoDB:** Banco de dados NoSQL escolhido pela sua flexibilidade e escalabilidade.
-- **Express.js:** Framework que simplifica o desenvolvimento de rotas e middleware no Node.js.
 - **React:** Biblioteca que facilita a criação de interfaces de usuário interativas e responsivas.
 - **Node.js:** Ambiente de execução que permite utilizar JavaScript no servidor, unificando a linguagem em todo o projeto.
+- **MongoDB:** Banco de dados NoSQL escolhido pela sua flexibilidade e escalabilidade.
+- **Express.js:** Framework que simplifica o desenvolvimento de rotas e middleware no Node.js.
 
 ## Estrutura do Projeto
 
