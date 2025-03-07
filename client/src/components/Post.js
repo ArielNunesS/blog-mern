@@ -9,7 +9,9 @@ export default function Post({_id, title, summary, content, cover, createdAt, au
 
     <div className="post-card">
         <div className="post-image">
-            <img src={'http://localhost:4000/'+cover}></img>
+            <Link to={`/posts/${_id}`}>
+                <img src={'http://localhost:4000/'+cover}></img>
+            </Link>
         </div>
 
         <div className="post-content">
