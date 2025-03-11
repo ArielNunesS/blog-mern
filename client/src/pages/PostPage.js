@@ -11,7 +11,7 @@ export default function PostPage() {
     const { id } = useParams();
 
     useEffect(() => {
-        fetch(`http://localhost:4000/posts/${id}`)
+        fetch(`${process.env.REACT_APP_API_URL}/posts${id}`)
         .then(response => {
             response.json().then(postInfo => {
                 setPostInfo(postInfo);
@@ -34,7 +34,7 @@ export default function PostPage() {
             <time className="single-time"> {format(new Date(postInfo.createdAt), "MMM d, yyyy - HH:mm")} </time>
         </div>
 
-        <img src={`http://localhost:4000/${postInfo.cover}`} alt="Post Img"/>
+        <img src={`${process.env.REACT_APP_API_URL}/${postInfo.cover}`} alt="Post Img"/>
     </div>
 
     <div className="single-texts">
