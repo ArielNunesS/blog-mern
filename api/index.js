@@ -16,7 +16,7 @@ const secret = process.env.JWT_SECRET || 'dm1893m89qjdasuijd189dj17dhaskjdh189';
 
 app.use(cors({
     credentials:true,
-    origin:'https://blog-mern-frontend-agxuyfsw0-ariel-nunes-da-silvas-projects.vercel.app/' || 'http://localhost:3000',
+    origin:'https://blog-mern-frontend-9h0hhfjl5-ariel-nunes-da-silvas-projects.vercel.app/' || 'http://localhost:3000',
 }));
 
 app.use(express.json());
