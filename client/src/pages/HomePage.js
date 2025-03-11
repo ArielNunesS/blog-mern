@@ -5,7 +5,7 @@ export default function HomePage(){
     const [ posts, setPosts ] = useState([]);
 
     useEffect(() => {
-        fetch(`${process.env.REACT_APP_API_URL}/posts`).then(response => {
+        fetch('https://blog-mern-backend-y37e.onrender.com/posts').then(response => {
             response.json().then(posts => {
                 setPosts(posts);
             });
