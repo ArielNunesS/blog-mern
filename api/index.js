@@ -7,19 +7,25 @@ const cookieParser = require('cookie-parser');
 const User = require('./models/User');
 const Post = require('./models/Post');
 const multer = require('multer');
-const uploadMiddleware = multer({ dest: 'uploads/' })
+const uploadMiddleware = multer({ dest: process.env.UPLOAD_DIR || 'uploads/' });
 const fs = require('fs');
 const app = express();
+require ('dotenv').config();
 
 const salt = bcrypt.genSaltSync(10);
-const secret = 'dm1893m89qjdasuijd189dj17dhaskjdh189'
+const secret = process.env.JWT_SECRET || 'dm1893m89qjdasuijd189dj17dhaskjdh189';
 
-app.use(cors({credentials:true,origin:'http://localhost:3000'}));
+app.use(cors({
+    credentials:true,
+    origin:'process.env.FRONTEND_URL' || 'http://localhost:3000'
+    }));
+
+
 app.use(express.json());
 app.use(cookieParser());
 app.use('/uploads', express.static(__dirname + '/uploads'));
 
-mongoose.connect('mongodb+srv://blog:8QNdKVWchq3avphC@cluster0.odzhw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0');
+mongoose.connect(process.env.MONGODB_URI);
 
 app.get('/users', async (req, res) => {
     const users = await User.find();
@@ -149,4 +155,8 @@ app.delete('/posts/:id', async (req, res) => {
 
 });
 
-app.listen(4000);
+
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
