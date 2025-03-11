@@ -5,7 +5,7 @@ export default function HomePage(){
     const [ posts, setPosts ] = useState([]);
 
     useEffect(() => {
-        fetch(process.env.PORT).then(response => {
+        fetch(`${process.env.REACT_APP_API_URL}/posts`).then(response => {
             response.json().then(posts => {
                 setPosts(posts);
             });
