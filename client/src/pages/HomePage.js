@@ -5,7 +5,7 @@ export default function HomePage(){
     const [ posts, setPosts ] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:4000/posts').then(response => {
+        fetch(process.env.PORT).then(response => {
             response.json().then(posts => {
                 setPosts(posts);
             });
