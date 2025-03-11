@@ -10,7 +10,6 @@ const multer = require('multer');
 const uploadMiddleware = multer({ dest: process.env.UPLOAD_DIR || 'uploads/' });
 const fs = require('fs');
 const app = express();
-require ('dotenv').config();
 
 const salt = bcrypt.genSaltSync(10);
 const secret = process.env.JWT_SECRET || 'dm1893m89qjdasuijd189dj17dhaskjdh189';
@@ -19,7 +18,6 @@ app.use(cors({
     credentials:true,
     origin:'process.env.FRONTEND_URL' || 'http://localhost:3000'
     }));
-
 
 app.use(express.json());
 app.use(cookieParser());
