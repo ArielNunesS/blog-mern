@@ -9,7 +9,7 @@ export default function HomePage(){
             {
                 mode: 'cors',
                 headers: {
-                    Access-Control-Allow-Origin: *,
+                    'Access-Control-Allow-Origin': '*',
                 }
             }
         ).then(response => {
