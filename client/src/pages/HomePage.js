@@ -7,10 +7,7 @@ export default function HomePage(){
     useEffect(() => {
         fetch(`${process.env.REACT_APP_API_URL}posts`,
             {
-                mode: 'cors',
-                headers: {
-                    'Access-Control-Allow-Origin': '*',
-                }
+                header: ('Access-Control-Allow-Origin: *'),
             }
         ).then(response => {
             response.json().then(posts => {
