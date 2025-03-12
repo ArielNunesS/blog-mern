@@ -5,11 +5,7 @@ export default function HomePage(){
     const [ posts, setPosts ] = useState([]);
 
     useEffect(() => {
-        fetch(`${process.env.REACT_APP_API_URL}posts`,
-            {
-                header: ('Access-Control-Allow-Origin: *'),
-            }
-        ).then(response => {
+        fetch(`${process.env.REACT_APP_API_URL}posts`, ).then(response => {
             response.json().then(posts => {
                 setPosts(posts);
             });
