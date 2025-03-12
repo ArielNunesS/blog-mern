@@ -31,7 +31,7 @@ export default function Post({_id, title, summary, content, cover, createdAt, au
     <div className="post-card">
         <div className="post-image">
             <Link to={`/posts/${_id}`}>
-                <img src={'http://localhost:4000/'+cover}></img>
+                <img src={process.env.UPLOADS+cover}></img>
             </Link>
         </div>
 
