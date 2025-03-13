@@ -20,13 +20,17 @@ const allowedOrigins = [
     'http://localhost:3000'
 ];
 
-const apiKeys = process.env.API_KEYS;
+const API_KEY = process.env.API_KEY;
 
 const checkApiKey (req, res, next) => {
     const apiKey = req.header('x-api-key')
 
-    if(!apiKey || !apiKeys.includes(apiKey)) {
-        return res.status(403).json({ error: 'Access denied: Invalid api key'})
+    if(!apiKey) {
+        return res.status(403).json({ error: 'Access denied: Invalid api key'});
+    }
+
+    if (apiKey !== API_KEY) {
+        return res.status(403).json({ error: 'Invalid API Key' });
     }
 
     next();
