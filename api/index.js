@@ -34,7 +34,7 @@ const checkApiKey = (req, res, next) => {
     }
 
     next();
-} 
+}
 
 app.use(cors({
     credentials:true,
