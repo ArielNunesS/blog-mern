@@ -23,7 +23,9 @@ const allowedOrigins = [
 const API_KEY = process.env.API_KEY;
 
 const checkApiKey = (req, res, next) => {
-    const apiKey = req.header('x-api-key')
+    const apiKey = process.env.API_KEY;
+
+    
 
     if(!apiKey) {
         return res.status(403).json({ error: 'Access denied: Invalid api key'});
