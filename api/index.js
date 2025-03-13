@@ -22,7 +22,7 @@ const allowedOrigins = [
 
 const API_KEY = process.env.API_KEY;
 
-const checkApiKey (req, res, next) => {
+const checkApiKey = (req, res, next) => {
     const apiKey = req.header('x-api-key')
 
     if(!apiKey) {
