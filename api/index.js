@@ -20,7 +20,7 @@ const allowedOrigins = [
     'http://localhost:3000'
 ];
 
-const apiKeys = process.env.API_KEYS.split(',');
+const apiKeys = process.env.API_KEYS;
 
 const checkApiKey (req, res, next) => {
     const apiKey = req.header('x-api-key')
