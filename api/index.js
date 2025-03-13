@@ -11,12 +11,36 @@ const uploadMiddleware = multer({ dest: process.env.UPLOAD_DIR || 'uploads/' });
 const fs = require('fs');
 const app = express();
 
+require('dotenv').config();
+
 const salt = bcrypt.genSaltSync(10);
 const secret = process.env.JWT_SECRET || 'dm1893m89qjdasuijd189dj17dhaskjdh189';
+const allowedOrigins = [
+    'https://blog-mern-frontend-beta.vercel.app',
+    'http://localhost:3000'
+];
+
+const apiKeys = process.env.API_KEYS.split(',');
+
+const checkApiKey (req, res, next) => {
+    const apiKey = req.header('x-api-key')
+
+    if(!apiKey || !apiKeys.includes(apiKey)) {
+        return res.status(403).json({ error: 'Access denied: Invalid api key'})
+    }
+
+    next();
+} 
 
 app.use(cors({
     credentials:true,
-    origin:'https://blog-mern-frontend-beta.vercel.app' || 'http://localhost:3000',
+    origin: function(origin, callback) {
+        if(!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    }
 }));
 
 app.use(express.json());
@@ -25,12 +49,12 @@ app.use('/uploads', express.static(__dirname + '/uploads'));
 
 mongoose.connect(process.env.MONGODB_URI);
 
-app.get('/users', async (req, res) => {
+app.get('/users', checkApiKey, async (req, res) => {
     const users = await User.find();
     res.json(users);
 });
 
-app.get('/profile', (req, res) => {
+app.get('/profile', checkApiKey, (req, res) => {
     const { token } = req.cookies;
     jwt.verify(token, secret, {}, (err, info) => {
         if (err) throw err
@@ -38,7 +62,7 @@ app.get('/profile', (req, res) => {
     });
 });
 
-app.post('/register', async (req, res) => {
+app.post('/register', checkApiKey, async (req, res) => {
     const {username, password} = req.body;
     try{
         const userDoc = await User.create({
@@ -52,7 +76,7 @@ app.post('/register', async (req, res) => {
     }
 });
 
-app.post('/login', async (req, res) => {
+app.post('/login', checkApiKey, async (req, res) => {
     const {username, password} = req.body;
     const userDoc = await User.findOne({username});
     const passOk = bcrypt.compareSync(password, userDoc.password);
@@ -71,12 +95,12 @@ app.post('/login', async (req, res) => {
     }
 });
 
-app.post('/logout', (req, res) => {
+app.post('/logout', checkApiKey, (req, res) => {
     res.clearCookie('token', {httpOnly: true, sameSite: 'Strict'});
     res.status(200).json({ message: 'Logout completed successfully'});
 });
 
-app.post('/posts', uploadMiddleware.single('file'), async (req, res) => {
+app.post('/posts', checkApiKey, uploadMiddleware.single('file'), async (req, res) => {
     const {originalname, path} = req.file;
     const parts = originalname.split('.');
     const ext = parts[parts.length - 1];
@@ -98,7 +122,7 @@ app.post('/posts', uploadMiddleware.single('file'), async (req, res) => {
     });
 });
 
-app.delete('/users/:id', async (req, res) => {
+app.delete('/users/:id', checkApiKey, async (req, res) => {
     const { id } = req.params;
 
     try {
@@ -135,7 +159,7 @@ app.get('/posts/:id', async (req, res) => {
     res.json(postDoc);
 });
 
-app.delete('/posts/:id', async (req, res) => {
+app.delete('/posts/:id', checkApiKey, async (req, res) => {
     const { id } = req.params;
 
     try {
