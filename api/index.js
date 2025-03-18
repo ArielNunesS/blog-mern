@@ -1,6 +1,6 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const cors = require('cors');
+const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
@@ -11,8 +11,6 @@ const uploadMiddleware = multer({ dest: process.env.UPLOAD_DIR || 'uploads/' });
 const fs = require('fs');
 const app = express();
 
-const salt = bcrypt.genSaltSync(10);
-const secret = process.env.JWT_SECRET || 'dm1893m89qjdasuijd189dj17dhaskjdh189';
 const allowedOrigins = [
     'https://blog-mern-frontend-beta.vercel.app',
     'http://localhost:3000'
@@ -23,11 +21,17 @@ app.use(cors({
     credentials: true
 }));
 
+app.options('*', cors());
+
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use('/uploads', express.static(__dirname + '/uploads'));
 
 mongoose.connect(process.env.MONGODB_URI);
+
+const salt = bcrypt.genSaltSync(10);
+const secret = process.env.JWT_SECRET || 'dm1893m89qjdasuijd189dj17dhaskjdh189';
 
 app.get('/users', async (req, res) => {
     const users = await User.find();
