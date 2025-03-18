@@ -51,7 +51,6 @@ export default function CreatePost() {
            credentials: 'include',
            method: 'POST',
            body: data,
-           origin: 'https://blog-mern-frontend-beta.vercel.app/',
         });
 
         if(response.ok){
