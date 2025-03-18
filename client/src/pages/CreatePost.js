@@ -51,9 +51,6 @@ export default function CreatePost() {
            credentials: 'include',
            method: 'POST',
            body: data,
-           headers: {
-            'Access-Control-Allow-Origin': '*',
-           }
         });
 
         if(response.ok){
