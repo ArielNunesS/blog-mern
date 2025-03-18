@@ -48,10 +48,10 @@ export default function CreatePost() {
         data.set('file', files[0]);
 
         const response = await fetch(`${process.env.REACT_APP_API_URL}posts`, {
+           credentials: 'include',
            method: 'POST',
            body: data,
-           credentials: 'include',
-           origin: 'https://blog-mern-frontend-beta.vercel.app/create',
+           origin: 'https://blog-mern-frontend-beta.vercel.app/',
         });
 
         if(response.ok){
