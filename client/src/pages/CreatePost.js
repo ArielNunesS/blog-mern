@@ -51,6 +51,7 @@ export default function CreatePost() {
            method: 'POST',
            body: data,
            credentials: 'include',
+           origin: 'https://blog-mern-frontend-beta.vercel.app/create',
         });
 
         if(response.ok){
@@ -61,8 +62,6 @@ export default function CreatePost() {
     if(redirect){
         return <Navigate to={'/'} />
     }
-
-    
 
     return ( <>
         <form className="post-form" onSubmit={CreateNewPost}>
