@@ -1,17 +1,14 @@
-import "./App.css";
-import Layout from "./components/Layout";
 import { Route, Routes } from "react-router-dom";
+import Layout from "./components/Layout";
 import HomePage from "./pages/HomePage";
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
 import CreatePost from "./pages/CreatePost";
 import PostPage from "./pages/PostPage";
-import { UserContextProvider } from "./UserContext";
 
-function App() {
-  return (
-    <UserContextProvider>
-      <Routes>
+export function AppRoutes() {
+    return (
+    <Routes>
         <Route path="/" element={< Layout />}>
           <Route index element={< HomePage />}/>
           <Route path="/register" element={< RegisterPage />}/>
@@ -19,9 +16,6 @@ function App() {
           <Route path="/create" element={< CreatePost />}/>
           <Route path="/posts/:id" element={< PostPage />}/>
         </Route>
-      </Routes>
-    </UserContextProvider>
-  );
+    </Routes>
+    )
 }
-
-export default App;
