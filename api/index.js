@@ -112,7 +112,7 @@ app.post('/posts', uploadMiddleware.single('file'), async (req, res) => {
         if (err) throw err;
         const {title, summary, content} = req.body;
 
-        const imageUrl = `${process.env.REACT_APP_API_URL}/uploads/${newPath.split('/').pop()}`;
+        const imageUrl = `/uploads/${newPath.split('/').pop()}`;
 
         const postDoc = await Post.create({
             title,
