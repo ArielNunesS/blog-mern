@@ -17,7 +17,10 @@ const allowedOrigins = [
 ];
 
 app.use(cors({
-    origin: 'https://blog-mern-frontend-beta.vercel.app',
+    origin: [
+        'https://blog-mern-frontend-beta.vercel.app',
+        'https://blog-mern-frontend-beta.vercel.app/create'
+    ],
     credentials: true
 }));
 
