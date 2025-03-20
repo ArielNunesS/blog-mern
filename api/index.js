@@ -7,9 +7,14 @@ const cookieParser = require('cookie-parser');
 const User = require('./models/User');
 const Post = require('./models/Post');
 const multer = require('multer');
-const uploadMiddleware = multer({ dest: `${process.env.REACT_APP_API_URL}/uploads/` });
 const fs = require('fs');
 const app = express();
+const path = require('path');
+const uploadsDir = path.join(__dirname, 'uploads');
+if(!fs.existsSync(uploadsDir)){
+    fs.mkdirSync(uploadsDir, { recursive: true });
+}
+const uploadMiddleware = multer({ dest: uploadsDir });
 
 const allowedOrigins = [
     'https://blog-mern-frontend-beta.vercel.app',
@@ -34,7 +39,7 @@ app.use('/uploads', express.static(__dirname + '/uploads'));
 mongoose.connect(process.env.MONGODB_URI);
 
 const salt = bcrypt.genSaltSync(10);
-const secret = process.env.JWT_SECRET || 'dm1893m89qjdasuijd189dj17dhaskjdh189';
+const secret = process.env.JWT_SECRET;
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Credentials', 'true');
