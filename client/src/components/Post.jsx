@@ -9,7 +9,7 @@ export default function Post({_id, title, summary, content, cover, createdAt, au
     const [ contentOverflows, setContentOverflows ] = useState(false);
     const contentRef = useRef(null);
     const containerRef = useRef(null);
-    // test
+
     useEffect(() => {
         const checkOverflow = () => {
             if(contentRef.current && containerRef.current) {
@@ -31,7 +31,7 @@ export default function Post({_id, title, summary, content, cover, createdAt, au
     <div className="post-card">
         <div className="post-image">
             <Link to={`/posts/${_id}`}>
-                <img src={process.env.UPLOAD_DIR+cover}></img>
+                <img src={process.env.UPLOAD_DIR+cover} alt='k'></img>
             </Link>
         </div>
 
@@ -47,7 +47,7 @@ export default function Post({_id, title, summary, content, cover, createdAt, au
             <div className="author-info">
                 <span> Por </span>
                 <Link to={`users/${author._id}`}>
-                    <a className="author">{author.username}</a>
+                    <a className="author" href='{process.env.REACT_APP_API_URL}/{author}'>{author.username}</a>
                 </Link>
             </div>
 
