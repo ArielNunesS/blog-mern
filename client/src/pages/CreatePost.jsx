@@ -53,7 +53,6 @@ export default function CreatePost() {
            body: data,
            headers: {
             'Accept': 'application/json',
-            'Access-Control-Allow-Origin': '*'
            }
         });
 
