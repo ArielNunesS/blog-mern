@@ -31,7 +31,7 @@ export default function Post({_id, title, summary, content, cover, createdAt, au
     <div className="post-card">
         <div className="post-image">
             <Link to={`/posts/${_id}`}>
-                <img src={process.env.UPLOAD_DIR+cover} alt='k'></img>
+                <img src={cover} alt='Post img'/>
             </Link>
         </div>
 
@@ -47,7 +47,7 @@ export default function Post({_id, title, summary, content, cover, createdAt, au
             <div className="author-info">
                 <span> Por </span>
                 <Link to={`users/${author._id}`}>
-                    <a className="author" href='{process.env.REACT_APP_API_URL}/{author}'>{author.username}</a>
+                    <a className="author">{author.username}</a>
                 </Link>
             </div>
 

@@ -110,11 +110,14 @@ app.post('/posts', uploadMiddleware.single('file'), async (req, res) => {
     jwt.verify(token, secret, {}, async (err, info) => {
         if (err) throw err;
         const {title, summary, content} = req.body;
+
+        const imageUrl = `${process.env.REACT_APP_API_URL}/uploads/${newPath.split('/').pop()}`;
+
         const postDoc = await Post.create({
             title,
             summary,
             content,
-            cover: newPath,
+            cover: imageUrl,
             author:info.id,
         });
             res.json({postDoc});
