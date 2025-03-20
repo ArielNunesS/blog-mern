@@ -9,17 +9,13 @@ const Post = require('./models/Post');
 const multer = require('multer');
 const fs = require('fs');
 const app = express();
+
 const path = require('path');
 const uploadsDir = path.join(__dirname, 'uploads');
 if(!fs.existsSync(uploadsDir)){
     fs.mkdirSync(uploadsDir, { recursive: true });
 }
 const uploadMiddleware = multer({ dest: uploadsDir });
-
-const allowedOrigins = [
-    'https://blog-mern-frontend-beta.vercel.app',
-    'http://localhost:3000'
-];
 
 app.use(cors({
     origin: [
@@ -34,7 +30,7 @@ app.options('*', cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use('/uploads', express.static(__dirname + '/uploads'));
+app.use('/uploads', express.static(uploadsDir));
 
 mongoose.connect(process.env.MONGODB_URI);
 
