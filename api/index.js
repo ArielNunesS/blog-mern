@@ -7,7 +7,7 @@ const cookieParser = require('cookie-parser');
 const User = require('./models/User');
 const Post = require('./models/Post');
 const multer = require('multer');
-const uploadMiddleware = multer({ dest: `${REACT_APP_API_URL}/uploads/` });
+const uploadMiddleware = multer({ dest: `${process.env.REACT_APP_API_URL}/uploads/` });
 const fs = require('fs');
 const app = express();
 
