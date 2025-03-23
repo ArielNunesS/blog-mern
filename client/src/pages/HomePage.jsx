@@ -16,7 +16,7 @@ export default function HomePage(){
 
     <div className="blog-container">
         <div className="hero-section">
-            <h1>titulo llllll</h1>
+            <h1>Blog ✦</h1>
             <p>Aprenda mais sobre nosso blog, nossa abordagem e as últimas novidades.</p>
         </div>
 
