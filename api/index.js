@@ -7,15 +7,27 @@ const cookieParser = require('cookie-parser');
 const User = require('./models/User');
 const Post = require('./models/Post');
 const multer = require('multer');
-const fs = require('fs');
+const { v2: cloudinary } = require('cloudinary');
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
 const app = express();
+require('dotenv').config();
 
-const path = require('path');
-const uploadsDir = path.join(__dirname, 'uploads');
-if(!fs.existsSync(uploadsDir)){
-    fs.mkdirSync(uploadsDir, { recursive: true });
-}
-const uploadMiddleware = multer({ dest: uploadsDir });
+cloudinary.config({
+    cloud_name: 'di5ta6sun',
+    api_key: '846464382732734',
+    api_secret: process.env.API_SECRET,
+})
+
+const storage = new CloudinaryStorage({
+    cloudinary,
+    params: {
+        folder: 'blog-uploads',
+        allowed_formats: ['jpg', 'png', 'jpeg'],
+        public_id: (req, file) => `${Date.now()}-${file.originalname}`,
+    },
+});
+
+const uploadMiddleware = multer({ storage });
 
 app.use(cors({
     origin: [
@@ -30,7 +42,6 @@ app.options('*', cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use('/uploads', express.static(uploadsDir));
 
 mongoose.connect(process.env.MONGODB_URI);
 
@@ -61,6 +72,23 @@ app.get('/profile', (req, res) => {
         if (err) throw err
         res.json(info);
     });
+});
+
+app.get('/posts', async (req, res) => {
+    try {
+        res.json(await Post.find()
+        .populate('author', ['username'])
+        .sort({createdAt: -1})
+        .limit(20)
+    )} catch(error){
+        res.status(500).json({ error: 'Internal server error'});
+    }
+});
+
+app.get('/posts/:id', async (req, res) => {
+    const { id } = req.params;
+    const postDoc = await Post.findById(id).populate('author', ['username']);
+    res.json(postDoc);
 });
 
 app.post('/register', async (req, res) => {
@@ -101,25 +129,19 @@ app.post('/logout', (req, res) => {
 });
 
 app.post('/posts', uploadMiddleware.single('file'), async (req, res) => {
-    const {originalname, path} = req.file;
-    const parts = originalname.split('.');
-    const ext = parts[parts.length - 1];
-    const newPath = path+'.'+ext;
-    fs.renameSync(path, newPath);
-
     const { token } = req.cookies;
-    jwt.verify(token, secret, {}, async (err, info) => {
-        if (err) throw err;
-        const {title, summary, content} = req.body;
 
-        const imageUrl = `uploads/${newPath.split('/').pop()}`;
+    jwt.verify(token, secret, {}, async (err, info) => {
+        if (err) return res.status(401).json({ error: 'Token inválido' });
+    
+        const {title, summary, content} = req.body;
 
         const postDoc = await Post.create({
             title,
             summary,
             content,
-            cover: imageUrl,
-            author:info.id,
+            cover: req.file.path,
+            author: info.id,
         });
             res.json({postDoc});
     });
@@ -145,23 +167,6 @@ app.delete('/users/:id', async (req, res) => {
 
 });
 
-app.get('/posts', async (req, res) => {
-    try {
-        res.json(await Post.find()
-        .populate('author', ['username'])
-        .sort({createdAt: -1})
-        .limit(20)
-    )} catch(error){
-        res.status(500).json({ error: 'Internal server error'});
-    }
-});
-
-app.get('/posts/:id', async (req, res) => {
-    const { id } = req.params;
-    const postDoc = await Post.findById(id).populate('author', ['username']);
-    res.json(postDoc);
-});
-
 app.delete('/posts/:id', async (req, res) => {
     const { id } = req.params;
 
@@ -179,7 +184,6 @@ app.delete('/posts/:id', async (req, res) => {
     }
 
 });
-
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
