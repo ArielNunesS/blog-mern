@@ -32,7 +32,8 @@ const uploadMiddleware = multer({ storage });
 app.use(cors({
     origin: [
         'https://blog-mern-frontend-beta.vercel.app',
-        'https://blog-mern-frontend-beta.vercel.app/create'
+        'https://blog-mern-frontend-beta.vercel.app/create',
+        'http://localhost:3000/',
     ],
     credentials: true
 }));
