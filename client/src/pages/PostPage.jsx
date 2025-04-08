@@ -29,7 +29,7 @@ export default function PostPage() {
     <div className="single-info-img">
         <div className="single-info">
             <Link to={`/users/${postInfo.author._id}`}>
-                <a className="single-author"> { postInfo.author.username } </a>
+                <p className="single-author"> { postInfo.author.username } </p>
             </Link>
             <time className="single-time"> {format(new Date(postInfo.createdAt), "MMM d, yyyy - HH:mm")} </time>
         </div>

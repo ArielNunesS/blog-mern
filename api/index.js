@@ -33,7 +33,7 @@ app.use(cors({
     origin: [
         'https://blog-mern-frontend-beta.vercel.app',
         'https://blog-mern-frontend-beta.vercel.app/create',
-        'http://localhost:3000/',
+        'http://localhost:3000',
     ],
     credentials: true
 }));
@@ -52,7 +52,7 @@ const secret = process.env.JWT_SECRET;
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Credentials', 'true');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
-    res.header('Access-Control-Allow-Origin', 'https://blog-mern-frontend-beta.vercel.app');
+    res.header('Access-Control-Allow-Origin', 'https://blog-mern-frontend-beta.vercel.app', 'http://localhost:3000');
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
 
     if (req.method === 'OPTIONS') {
